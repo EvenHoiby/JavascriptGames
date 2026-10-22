@@ -72,9 +72,9 @@ main {
     left: 50px;
     rotate: 90deg;
     transform: scaleX(-1);
-    animation-name: handShakeOpponent;
-    animation-duration: 2s;
-    animation-timing-function: linear;
+}
+.animateOpponentHand {
+    animation: handShakeOpponent 2s linear;
 }
 @keyframes handShakeOpponent {
     0% { transform: translateX(0) rotate(0deg) scaleX(-1) }
@@ -90,9 +90,9 @@ main {
 #userHand {
     right: 50px;
     rotate: -90deg;
-    animation-name: handShakeUser;
-    animation-duration: 2s;
-    animation-timing-function: linear;
+}
+.animateUserHand {
+    animation: handShakeUser 2s linear;
 }
 @keyframes handShakeUser {
     0% { transform: translateX(0) rotate(0deg) }
@@ -120,12 +120,13 @@ main {
     font-size: 60px;
     margin: 0;
     background-color: #003366;
+    border: none;
     border-radius: 50%;
     padding: 20px;
     margin: 10px;
     transition: transform 0.5s;
 }
-.choice:hover, .choice:focus {
+.choice:hover {
     transform: scale(1.1);
 }
 
