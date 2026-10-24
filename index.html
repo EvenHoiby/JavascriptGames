@@ -20,15 +20,20 @@
 
     <main>
         <article class="game" id="rockPaperScissors">
-            <div class="rpsDisplay">
-                <p class="rpsDisplayText" id="countdown"></p>
-            </div>
             <div id="gameDisplay">
                 <div class="playerNameDisplay">
                     <p class="name">Opponent</p>
                     <p class="hand" id="opponentHand">✊</p>
                     <div class="rpsDisplay">
                         <p class="rpsDisplayText" id="opponentScore">Score: 0</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="rpsDisplay">
+                        <p class="rpsDisplayText" id="countdown"></p>
+                    </div>
+                    <div class="rpsDisplay">
+                        <p class="rpsDisplayText" id="winLose"></p>
                     </div>
                 </div>
                 <div class="playerNameDisplay">
@@ -38,9 +43,6 @@
                         <p class="rpsDisplayText" id="userScore">Score: 0</p>
                     </div>
                 </div>
-            </div>
-            <div class="rpsDisplay">
-                <p class="rpsDisplayText" id="winLose"></p>
             </div>
             <div id="choiceContainer">
                 <button class="choice" id="rock">🪨</button>
