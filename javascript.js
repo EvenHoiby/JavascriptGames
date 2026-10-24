@@ -27,3 +27,17 @@ opponentHand.addEventListener("animationend", () => {
 });
 
 const hands = ["✊", "✋", "✌️"];
+
+function randomHands() {
+    let rNumber = Math.ceil(Math.random()*9);
+    console.log(rNumber);
+    if(rNumber <= 3) {
+        return "✊";
+    }
+    else if(rNumber <= 6 && rNumber > 3) {
+        return "✋";
+    }
+    else if (rNumber <= 9 && rNumber > 6) {
+        return "✌️";
+    }
+};
