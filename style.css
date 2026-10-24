@@ -77,17 +77,11 @@ main {
     left: 10px;
 }
 .animateOpponentHand {
-    animation: handShakeOpponent 2s linear;
+    animation: handShakeOpponent 0.5s linear 4;
 }
 @keyframes handShakeOpponent {
     0% { transform: translateX(0) rotate(0deg) scaleX(-1) }
-    12.5% { transform: translateX(-20px) rotate(-20deg) scaleX(-1) }
-    25% { transform: translateX(0) rotate(0deg) scaleX(-1) }
-    37.5% { transform: translateX(-20px) rotate(-20deg) scaleX(-1) }
-    50% { transform: translateX(0) rotate(0deg) scaleX(-1) }
-    62.5% { transform: translateX(-20px) rotate(-20deg) scaleX(-1) }
-    75% { transform: translateX(0) rotate(0deg) scaleX(-1) }
-    87.5% { transform: translateX(-20px) rotate(-20deg) scaleX(-1) }
+    50% { transform: translateX(-20px) rotate(-20deg) scaleX(-1) }
     100% { transform: translateX(0) rotate(0deg) scaleX(-1) }
 }
 #userHand {
@@ -95,20 +89,14 @@ main {
     left: -10px;
 }
 .animateUserHand {
-    animation: handShakeUser 2s linear;
+    animation: handShakeUser 0.5s linear 4;
 }
 @keyframes handShakeUser {
     0% { transform: translateX(0) rotate(0deg) }
-    12.5% { transform: translateX(20px) rotate(20deg) }
-    25% { transform: translateX(0) rotate(0deg) }
-    37.5% { transform: translateX(20px) rotate(20deg) }
-    50% { transform: translateX(0) rotate(0deg) }
-    62.5% { transform: translateX(20px) rotate(20deg) }
-    75% { transform: translateX(0) rotate(0deg) }
-    87.5% { transform: translateX(20px) rotate(20deg) }
+    50% { transform: translateX(20px) rotate(20deg) }
     100% { transform: translateX(0) rotate(0deg) }
 }
-#winLoseDisplay {
+.rpsDisplay {
     border: 5px solid #003366;
     background-color: #5b88b5;
     display: flex;
@@ -119,8 +107,9 @@ main {
     border-radius: 20px;
     padding: 5px 10px;
     border-radius: 10px;
+    margin-top: 10px;
 }
-#winLose {
+.rpsDisplayText {
     color: #f5f3ee;
     margin: 0px;
     background-color: #003366;
