@@ -62,6 +62,8 @@ function randomHands() {
     }
 };
 
+let userScoreAmount = 0;
+let opponentScoreAmount = 0;
 const winLose = document.getElementById("winLose");
 
 userHand.addEventListener("animationend", () => {
@@ -70,21 +72,43 @@ userHand.addEventListener("animationend", () => {
     }
     else if(userChoice == "✊" && opponentChoice == "✌️") {
         winLose.innerText = "You Won!";
+        userScoreAmount++
     }
     else if(userChoice == "✋" && opponentChoice == "✊") {
         winLose.innerText = "You Won!";
+        userScoreAmount++
     }
     else if(userChoice == "✌️" && opponentChoice == "✋") {
         winLose.innerText = "You Won!";
+        userScoreAmount++
     }
     else if(opponentChoice == "✊" && userChoice == "✌️") {
         winLose.innerText = "You Lost!";
+        opponentScoreAmount++
     }
     else if(opponentChoice == "✋" && userChoice == "✊") {
         winLose.innerText = "You Lost!";
+        opponentScoreAmount++
     }
     else if(opponentChoice == "✌️" && userChoice == "✋") {
         winLose.innerText = "You Lost!";
+        opponentScoreAmount++
     }
-    
+});
+
+const countdown = document.getElementById("countdown");
+const countdownText = ["Rock", "Paper", "Scissors", "Shoot!"];
+let count = 0;
+
+const userScore = document.getElementById("userScore");
+const opponentScore = document.getElementById("opponentScore");
+
+userHand.addEventListener("animationiteration", () => {
+    countdown.innerText = countdownText[count++];
+});
+userHand.addEventListener("animationend", () => {
+    countdown.innerText = countdownText[count];
+    count = 0;
+    userScore.innerText = "Score: " + userScoreAmount;
+    opponentScore.innerText = "Score: " + opponentScoreAmount;
 });
