@@ -6,6 +6,7 @@ const paperButton = document.getElementById("paper");
 const scissorsButton = document.getElementById("scissors");
 
 let userChoice;
+let opponentChoice;
 
 rockButton.addEventListener("click", () => {
     userHand.innerText = "✊";
@@ -38,7 +39,8 @@ opponentHand.addEventListener("animationend", () => {
 });
 
 opponentHand.addEventListener("animationend", ()=>{
-    opponentHand.innerText = randomHands();
+    opponentChoice = randomHands();
+    opponentHand.innerText = opponentChoice;
 });
 userHand.addEventListener("animationend", () => {
     userHand.innerText = userChoice;
@@ -59,3 +61,30 @@ function randomHands() {
         return "✌️";
     }
 };
+
+const winLose = document.getElementById("winLose");
+
+userHand.addEventListener("animationend", () => {
+    if(userChoice == opponentChoice) {
+        winLose.innerText = "Draw";
+    }
+    else if(userChoice == "✊" && opponentChoice == "✌️") {
+        winLose.innerText = "You Won!";
+    }
+    else if(userChoice == "✋" && opponentChoice == "✊") {
+        winLose.innerText = "You Won!";
+    }
+    else if(userChoice == "✌️" && opponentChoice == "✋") {
+        winLose.innerText = "You Won!";
+    }
+    else if(opponentChoice == "✊" && userChoice == "✌️") {
+        winLose.innerText = "You Lost!";
+    }
+    else if(opponentChoice == "✋" && userChoice == "✊") {
+        winLose.innerText = "You Lost!";
+    }
+    else if(opponentChoice == "✌️" && userChoice == "✋") {
+        winLose.innerText = "You Lost!";
+    }
+    
+});
