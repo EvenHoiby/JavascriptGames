@@ -9,29 +9,27 @@ let userChoice;
 let opponentChoice;
 
 rockButton.addEventListener("click", () => {
-    userHand.innerText = "✊";
-    opponentHand.innerText = "✊";
-    userHand.classList.add("animateUserHand");
-    opponentHand.classList.add("animateOpponentHand");
     userChoice = "✊";
+    startRound()
     removeHandGlow();
 });
 paperButton.addEventListener("click", () => {
-    userHand.innerText = "✊";
-    opponentHand.innerText = "✊";
-    userHand.classList.add("animateUserHand");
-    opponentHand.classList.add("animateOpponentHand");
     userChoice = "✋";
+    startRound()
     removeHandGlow();
 });
 scissorsButton.addEventListener("click", () => {
+    userChoice = "✌️";
+    startRound()
+    removeHandGlow();
+});
+
+function startRound() {
     userHand.innerText = "✊";
     opponentHand.innerText = "✊";
     userHand.classList.add("animateUserHand");
     opponentHand.classList.add("animateOpponentHand");
-    userChoice = "✌️";
-    removeHandGlow();
-});
+};
 
 function removeHandGlow() {
     userHand.classList.remove("handWon");
@@ -75,46 +73,38 @@ function randomHands() {
 
 let userScoreAmount = 0;
 let opponentScoreAmount = 0;
-const winLose = document.getElementById("winLose");
 
-userHand.addEventListener("animationend", () => {
+opponentHand.addEventListener("animationend", () => {
     if(userChoice == opponentChoice) {
-        winLose.innerText = "Draw";
         userHand.classList.add("handDraw");
         opponentHand.classList.add("handDraw");
     }
     else if(userChoice == "✊" && opponentChoice == "✌️") {
-        winLose.innerText = "You Won!";
         userScoreAmount++
         userHand.classList.add("handWon");
         opponentHand.classList.add("handLost");
     }
     else if(userChoice == "✋" && opponentChoice == "✊") {
-        winLose.innerText = "You Won!";
         userScoreAmount++
         userHand.classList.add("handWon");
         opponentHand.classList.add("handLost");
     }
     else if(userChoice == "✌️" && opponentChoice == "✋") {
-        winLose.innerText = "You Won!";
         userScoreAmount++
         userHand.classList.add("handWon");
         opponentHand.classList.add("handLost");
     }
     else if(opponentChoice == "✊" && userChoice == "✌️") {
-        winLose.innerText = "You Lost!";
         opponentScoreAmount++
         opponentHand.classList.add("handWon");
         userHand.classList.add("handLost");
     }
     else if(opponentChoice == "✋" && userChoice == "✊") {
-        winLose.innerText = "You Lost!";
         opponentScoreAmount++
         opponentHand.classList.add("handWon");
         userHand.classList.add("handLost");
     }
     else if(opponentChoice == "✌️" && userChoice == "✋") {
-        winLose.innerText = "You Lost!";
         opponentScoreAmount++
         opponentHand.classList.add("handWon");
         userHand.classList.add("handLost");
@@ -128,10 +118,10 @@ let count = 0;
 const userScore = document.getElementById("userScore");
 const opponentScore = document.getElementById("opponentScore");
 
-userHand.addEventListener("animationiteration", () => {
+opponentHand.addEventListener("animationiteration", () => {
     countdown.innerText = countdownText[count++];
 });
-userHand.addEventListener("animationend", () => {
+opponentHand.addEventListener("animationend", () => {
     countdown.innerText = countdownText[count];
     count = 0;
     userScore.innerText = "Score: " + userScoreAmount;
