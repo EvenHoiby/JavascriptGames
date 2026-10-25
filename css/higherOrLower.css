@@ -1,0 +1,42 @@
+#guessTheNumber {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.holDisplay {
+    border: 5px solid #003366;
+    background-color: #5b88b5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 20px;
+    border-radius: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+.holTitle {
+    width: 150px;
+    color: #003366;
+}
+#holTitleText {
+    color: #f5f3ee;
+    margin: 0px;
+    background-color: #003366;
+    border-radius: 8px;
+    padding: 2px 8px;
+}
+
+#guessAndAnswer {
+    border: 1px solid red;
+    display: flex;
+}
+#guessDisplay {
+    border: 1px solid red;
+}
+#answerDisplay {
+    border: 1px solid red;
+}
