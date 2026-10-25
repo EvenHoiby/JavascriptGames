@@ -33,9 +33,17 @@
 #guessAndAnswer {
     border: 1px solid red;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
 }
 #guessDisplay {
     border: 1px solid red;
+}
+#holGuessText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #answerDisplay {
     border: 1px solid red;
