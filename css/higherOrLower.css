@@ -5,46 +5,45 @@
     align-items: center;
 }
 
-.holDisplay {
-    border: 5px solid #003366;
-    background-color: #5b88b5;
+#gameHolContainer {
+    border: 5px solid #383838;
+    background-color: #605f5f;
+    border-radius: 20px;
+    padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 20px;
-    border-radius: 20px;
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin-bottom: 5px;
+    flex-shrink: 0;
+    gap: 15px;
 }
-.holTitle {
-    width: 150px;
-    color: #003366;
-}
+
+
 #holTitleText {
     color: #f5f3ee;
     margin: 0px;
-    background-color: #003366;
+    background-color: #383838;
     border-radius: 8px;
     padding: 2px 8px;
 }
 
 #guessAndAnswer {
-    border: 1px solid red;
+    border: 5px solid #383838;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #8a8989;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-#guessDisplay {
-    border: 1px solid red;
-}
+
 #holGuessText {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #f5f3ee;
 }
 #answerDisplay {
-    border: 1px solid red;
+    color: #f5f3ee;
 }
