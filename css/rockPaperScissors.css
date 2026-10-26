@@ -19,7 +19,7 @@
     flex-shrink: 0;
 }
 
-#gameDisplay {
+#game1Display {
     flex: 1;
     min-height: 0;
     display: flex;
