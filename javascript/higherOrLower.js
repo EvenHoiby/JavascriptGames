@@ -32,7 +32,7 @@ function userGuess() {
     }
 };
 
-const holResponsArticle = document.getElementById("holResponsArticle")
+const holResponsList = document.getElementById("holResponsList")
 
 function holRespons() {
     const text = document.createElement("p");
@@ -48,7 +48,7 @@ function holRespons() {
         text.innerText = `${userInput.value} ↓ Lower`;
     }
 
-    holResponsArticle.append(text);
+    holResponsList.append(text);
 }
 
 // Prevents the page from refreshing
