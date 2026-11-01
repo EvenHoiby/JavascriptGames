@@ -11,10 +11,12 @@ function randomNumber() {
 
 holNewNumberBtn.addEventListener("click", ()=>{
     currentNumber = randomNumber();
+    userInput.value = "";
 });
 
 answerBtn.addEventListener("click", ()=>{
     userGuess()
+    userInput.value = "";
 });
 
 function userGuess() {
@@ -28,3 +30,8 @@ function userGuess() {
         gameAnswer.innerText = "Lower";
     }
 };
+
+// Prevents the page from refreshing
+function handleSubmit(event) {
+    event.preventDefault();
+}

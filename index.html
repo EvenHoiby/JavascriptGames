@@ -61,10 +61,10 @@
                     </div>
                     <div id="guessDisplay">
                         <p id="holGuessText">Guess a number from 1 to 100</p>
-                        <div id="inputDisplay">
-                            <input id="holUserInput">
-                            <button id="holAnswerBtn">Enter</button>
-                        </div>
+                        <form onsubmit="handleSubmit(event)" id="inputDisplay">
+                            <input type="text" placeholder="Type a number" id="holUserInput">
+                            <button type="submit" id="holAnswerBtn">Enter</button>
+                        </form>
                         <button id="holNewNumberBtn">New Number</button>
                     </div>
                 </div>
