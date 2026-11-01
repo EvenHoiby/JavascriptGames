@@ -67,7 +67,15 @@ p {
     border-radius: 8px;
     padding: 2px 8px;
 }
+#holUserInput {
+    background-color: #f5f3ee;
+    border: none;
+}
 
-#holRespons {
+#holResponsArticle {
     overflow: hidden;
+    justify-content: start;
+}
+.holRespons {
+    color: #f5f3ee;
 }
