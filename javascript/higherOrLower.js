@@ -16,6 +16,7 @@ holNewNumberBtn.addEventListener("click", ()=>{
 
 answerBtn.addEventListener("click", ()=>{
     userGuess()
+    holRespons()
     userInput.value = "";
 });
 
@@ -30,6 +31,25 @@ function userGuess() {
         gameAnswer.innerText = "Lower";
     }
 };
+
+const holResponsArticle = document.getElementById("holResponsArticle")
+
+function holRespons() {
+    const text = document.createElement("p");
+    text.classList = "holRespons";
+
+    if(userInput.value == currentNumber) {
+        text.innerText = `${userInput.value} ✓ Correct`;
+    }
+    else if(userInput.value < currentNumber) {
+        text.innerText = `${userInput.value} ↑ Higher`;
+    }
+    else if(userInput.value > currentNumber) {
+        text.innerText = `${userInput.value} ↓ Lower`;
+    }
+
+    holResponsArticle.append(text);
+}
 
 // Prevents the page from refreshing
 function handleSubmit(event) {
