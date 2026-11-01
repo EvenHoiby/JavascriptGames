@@ -58,7 +58,7 @@ userHand.addEventListener("animationend", () => {
 const hands = ["✊", "✋", "✌️"];
 
 function randomHands() {
-    let rNumber = Math.ceil(Math.random()*9);
+    let rNumber = Math.floor((Math.random() * 9) + 1);
     console.log(rNumber);
     if(rNumber <= 3) {
         return "✊";
