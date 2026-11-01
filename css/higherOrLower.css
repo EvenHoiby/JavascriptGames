@@ -31,7 +31,7 @@ p {
     margin: 0;
 }
 
-#guessAndAnswer {
+.holArticle {
     border: 5px solid #383838;
     border-radius: 20px;
     padding: 10px;
@@ -66,4 +66,8 @@ p {
     background-color: #383838;
     border-radius: 8px;
     padding: 2px 8px;
+}
+
+#holRespons {
+    overflow: hidden;
 }
