@@ -48,7 +48,7 @@ function holRespons() {
         text.innerText = `${userInput.value} ↓ Lower`;
     }
 
-    holResponsList.append(text);
+    holResponsList.prepend(text);
 }
 
 // Prevents the page from refreshing
