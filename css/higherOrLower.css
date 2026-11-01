@@ -1,80 +1,126 @@
 #guessTheNumber {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
-#gameHolContainer {
-    border: 5px solid #383838;
-    background-color: #605f5f;
-    border-radius: 20px;
-    padding: 20px;
-    height: 400px;
-    width: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-
-#holTitleText {
-    color: #f5f3ee;
-    background-color: #383838;
-    border-radius: 8px;
-    padding: 2px 8px;
-}
-
-p {
+#guessTheNumber p {
     margin: 0;
 }
 
-.holArticle {
-    border: 5px solid #383838;
+#gameHolContainer {
+    border: 5px solid #003366;
+    background-color: #5b88b5;
     border-radius: 20px;
-    padding: 10px;
-    height: 300px;
-    width: 250px;
-    background-color: #8a8989;
+    padding: 20px;
+    width: 480px;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+#holTitleText {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #003366;
+    color: #f5f3ee;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 6px 0;
+}
+
+.holArticle {
+    border: 5px solid #003366;
+    background-color: #a1b9d1;
+    border-radius: 15px;
+    padding: 15px;
+    width: 245px;
+    height: 300px;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#answerDisplay {
+    flex: 1;
+    width: 100%;
+    background-color: #003366;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#gameAnswer {
+    color: #f5f3ee;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 #guessDisplay {
-    border: 5px solid #383838;
-    padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 100%;
     gap: 10px;
 }
-
 #holGuessText {
     display: flex;
     justify-content: center;
-    align-items: center;
-    color: #f5f3ee;
+    color: #003366;
+    font-weight: bold;
 }
-#answerDisplay {
-    color: #f5f3ee;
-    background-color: #383838;
-    border-radius: 8px;
-    padding: 2px 8px;
+#inputDisplay {
+    display: flex;
+    flex-direction: row;
+    border: 3px solid #003366;
+    border-radius: 20px;
+    background-color: #f5f3ee;
+    overflow: hidden;
 }
 #holUserInput {
-    background-color: #f5f3ee;
+    width: 140px;
+    padding: 8px 12px;
     border: none;
+    background-color: #f5f3ee;
+    color: #003366;
+    font-size: 15px;
+}
+#holAnswerBtn {
+    padding: 8px 14px;
+    border: none;
+    background-color: #003366;
+    color: #f5f3ee;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+#holAnswerBtn:hover {
+    background-color: #5b88b5;
+}
+#holNewNumberBtn {
+    padding: 6px 18px;
+    border: 3px solid #003366;
+    border-radius: 20px;
+    background-color: #a1b9d1;
+    color: #003366;
+    font-size: 15px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+#holNewNumberBtn:hover {
+    transform: scale(1.05);
 }
 
 #holResponsArticle {
-    overflow-y: hidden;
-    justify-content: flex-start;
+    padding: 10px;
+    width: 150px;
+    height: 310px;
 }
 #holResponsList {
     height: 100%;
@@ -83,8 +129,22 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    scrollbar-color: #605f5f #8a8989;
+    gap: 6px;
+    scrollbar-color: #003366 #a1b9d1;
 }
 .holRespons {
+    flex-shrink: 0;
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+    background-color: #003366;
     color: #f5f3ee;
+    border-radius: 8px;
+    font-size: 15px;
+    animation: holPopIn 0.1s linear;
+}
+@keyframes holPopIn {
+    0% { transform: scale(0) }
+    100% { transform: scale(1) }
 }
