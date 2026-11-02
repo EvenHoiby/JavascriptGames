@@ -9,19 +9,28 @@ function randomNumber() {
     return Math.ceil((Math.random())*100);
 };
 
+let userAnswers = [];
+
 holNewNumberBtn.addEventListener("click", ()=>{
     currentNumber = randomNumber();
     userInput.value = "";
+    userAnswers = [];
 });
 
 answerBtn.addEventListener("click", ()=>{
-    userGuess()
-    holRespons()
+    if(Number(userInput.value) <= 100 && Number(userInput.value) >= 1) {
+        userAnswers.push(userInput.value);
+        userGuess();
+        holRespons();
+    }
     userInput.value = "";
 });
 
 function userGuess() {
-    if(userInput.value == currentNumber) {
+    if(userInput.value == "") {
+        gameAnswer.innerText = "-";
+    }
+    else if(userInput.value == currentNumber) {
         gameAnswer.innerText = "Correct";
     }
     else if(userInput.value < currentNumber) {
@@ -35,20 +44,26 @@ function userGuess() {
 const holResponsList = document.getElementById("holResponsList")
 
 function holRespons() {
-    const text = document.createElement("p");
-    text.classList = "holRespons";
+    holResponsList.innerHTML = "";
 
-    if(userInput.value == currentNumber) {
-        text.innerText = `${userInput.value} ✓ Correct`;
-    }
-    else if(userInput.value < currentNumber) {
-        text.innerText = `${userInput.value} ↑ Higher`;
-    }
-    else if(userInput.value > currentNumber) {
-        text.innerText = `${userInput.value} ↓ Lower`;
-    }
+    const sortedAnswers = [...userAnswers].sort((a, b) => b - a);
 
-    holResponsList.prepend(text);
+    for(let i = 0; i < sortedAnswers.length; i++) {
+        const text = document.createElement("p");
+        text.classList = "holRespons";
+
+        if(sortedAnswers[i] == currentNumber) {
+            text.innerText = `${sortedAnswers[i]} ✓ Correct`;
+        }
+        else if(sortedAnswers[i] < currentNumber) {
+            text.innerText = `${sortedAnswers[i]} ↑ Higher`;
+        }
+        else if(sortedAnswers[i] > currentNumber) {
+            text.innerText = `${sortedAnswers[i]} ↓ Lower`;
+        };
+
+        holResponsList.append(text);
+    }
 }
 
 // Prevents the page from refreshing
