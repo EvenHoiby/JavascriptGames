@@ -2,8 +2,12 @@ const answerBtn = document.getElementById("holAnswerBtn");
 const userInput = document.getElementById("holUserInput");
 const gameAnswer = document.getElementById("gameAnswer");
 const holNewNumberBtn = document.getElementById("holNewNumberBtn");
+const highscore = document.getElementById("highscore");
+const guessAmount = document.getElementById("guessAmount");
 
 let currentNumber = randomNumber();
+let guessCounter = 0;
+let currentHighscore = 9999;
 
 function randomNumber() {
     return Math.ceil((Math.random())*100);
@@ -15,6 +19,8 @@ holNewNumberBtn.addEventListener("click", ()=>{
     currentNumber = randomNumber();
     userInput.value = "";
     userAnswers = [];
+    guessCounter = 0;
+    guessAmount.innerText = "Guess: 0";
     userInput.disabled = false;
     answerBtn.disabled = false;
     userGuess();
@@ -28,6 +34,8 @@ answerBtn.addEventListener("click", ()=>{
         holRespons();
     }
     userInput.value = "";
+    guessCounter++
+    guessAmount.innerText = `Guess: ${guessCounter}`;
 });
 
 function userGuess() {
@@ -38,6 +46,10 @@ function userGuess() {
         gameAnswer.innerText = "Correct";
         userInput.disabled = true;
         answerBtn.disabled = true;
+        if(guessCounter < currentHighscore) {
+            currentHighscore = guessCounter + 1;
+            highscore.innerText = `Highscore: ${currentHighscore}`;
+        }
     }
     else if(userInput.value < currentNumber) {
         gameAnswer.innerText = "Higher";

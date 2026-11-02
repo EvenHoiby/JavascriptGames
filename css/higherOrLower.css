@@ -54,10 +54,11 @@
     background-color: #003366;
     border-radius: 12px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-#gameAnswer {
+.displayText {
     color: #f5f3ee;
     font-size: 40px;
     font-weight: bold;
