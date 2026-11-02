@@ -15,6 +15,8 @@ holNewNumberBtn.addEventListener("click", ()=>{
     currentNumber = randomNumber();
     userInput.value = "";
     userAnswers = [];
+    userInput.disabled = false;
+    answerBtn.disabled = false;
     userGuess();
     holRespons();
 });
@@ -34,6 +36,8 @@ function userGuess() {
     }
     else if(userInput.value == currentNumber) {
         gameAnswer.innerText = "Correct";
+        userInput.disabled = true;
+        answerBtn.disabled = true;
     }
     else if(userInput.value < currentNumber) {
         gameAnswer.innerText = "Higher";
