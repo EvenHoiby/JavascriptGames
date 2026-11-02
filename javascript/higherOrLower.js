@@ -15,6 +15,8 @@ holNewNumberBtn.addEventListener("click", ()=>{
     currentNumber = randomNumber();
     userInput.value = "";
     userAnswers = [];
+    userGuess();
+    holRespons();
 });
 
 answerBtn.addEventListener("click", ()=>{
