@@ -62,6 +62,13 @@
     color: #f5f3ee;
     font-size: 40px;
     font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid #003366;
+    background-color: #5b88b5;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #guessDisplay {
