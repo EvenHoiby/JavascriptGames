@@ -135,9 +135,17 @@ opponentHand.addEventListener("animationend", () => {
     if(opponentScoreAmount == 3) {
         countdown.innerText = "You Lost!";
         gameOver = true;
+        disableHover();
     }
     else if(userScoreAmount == 3) {
         countdown.innerText = "You Won!";
         gameOver = true;
+        disableHover();
     };
 });
+
+function disableHover() {
+    rockButton.classList.add("noHover");
+    paperButton.classList.add("noHover");
+    scissorsButton.classList.add("noHover");
+};

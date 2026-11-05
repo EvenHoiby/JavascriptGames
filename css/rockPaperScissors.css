@@ -130,3 +130,7 @@
 .choice:hover {
     transform: scale(1.1);
 }
+
+.noHover {
+    pointer-events: none;
+}
