@@ -55,8 +55,6 @@ userHand.addEventListener("animationend", () => {
     userHand.innerText = userChoice;
 });
 
-const hands = ["✊", "✋", "✌️"];
-
 function randomHands() {
     let rNumber = Math.floor((Math.random() * 9) + 1);
     console.log(rNumber);
@@ -80,36 +78,36 @@ opponentHand.addEventListener("animationend", () => {
         opponentHand.classList.add("handDraw");
     }
     else if(userChoice == "✊" && opponentChoice == "✌️") {
-        userScoreAmount++
-        userHand.classList.add("handWon");
-        opponentHand.classList.add("handLost");
+        userWin();
     }
     else if(userChoice == "✋" && opponentChoice == "✊") {
-        userScoreAmount++
-        userHand.classList.add("handWon");
-        opponentHand.classList.add("handLost");
+        userWin();
     }
     else if(userChoice == "✌️" && opponentChoice == "✋") {
-        userScoreAmount++
-        userHand.classList.add("handWon");
-        opponentHand.classList.add("handLost");
+        userWin();
     }
     else if(opponentChoice == "✊" && userChoice == "✌️") {
-        opponentScoreAmount++
-        opponentHand.classList.add("handWon");
-        userHand.classList.add("handLost");
+        opponentWin();
     }
     else if(opponentChoice == "✋" && userChoice == "✊") {
-        opponentScoreAmount++
-        opponentHand.classList.add("handWon");
-        userHand.classList.add("handLost");
+        opponentWin();
     }
     else if(opponentChoice == "✌️" && userChoice == "✋") {
-        opponentScoreAmount++
-        opponentHand.classList.add("handWon");
-        userHand.classList.add("handLost");
+        opponentWin();
     }
 });
+
+function userWin() {
+    userScoreAmount++
+    userHand.classList.add("handWon");
+    opponentHand.classList.add("handLost");
+};
+
+function opponentWin() {
+    opponentScoreAmount++
+    opponentHand.classList.add("handWon");
+    userHand.classList.add("handLost");
+};
 
 const countdown = document.getElementById("countdown");
 const countdownText = ["Rock", "Paper", "Scissors", "Shoot!"];
