@@ -8,20 +8,31 @@ const scissorsButton = document.getElementById("scissors");
 let userChoice;
 let opponentChoice;
 
+let userScoreAmount = 0;
+let opponentScoreAmount = 0;
+
+let gameOver = false;
+
 rockButton.addEventListener("click", () => {
-    userChoice = "✊";
-    startRound()
-    removeHandGlow();
+    if(!gameOver) {
+        userChoice = "✊";
+        startRound()
+        removeHandGlow();
+    };
 });
 paperButton.addEventListener("click", () => {
-    userChoice = "✋";
-    startRound()
-    removeHandGlow();
+    if(!gameOver) {
+        userChoice = "✋";
+        startRound()
+        removeHandGlow();
+    };
 });
 scissorsButton.addEventListener("click", () => {
-    userChoice = "✌️";
-    startRound()
-    removeHandGlow();
+    if(!gameOver) {
+        userChoice = "✌️";
+        startRound()
+        removeHandGlow();
+    };
 });
 
 function startRound() {
@@ -57,7 +68,6 @@ userHand.addEventListener("animationend", () => {
 
 function randomHands() {
     let rNumber = Math.floor((Math.random() * 9) + 1);
-    console.log(rNumber);
     if(rNumber <= 3) {
         return "✊";
     }
@@ -68,9 +78,6 @@ function randomHands() {
         return "✌️";
     }
 };
-
-let userScoreAmount = 0;
-let opponentScoreAmount = 0;
 
 opponentHand.addEventListener("animationend", () => {
     if(userChoice == opponentChoice) {
@@ -94,7 +101,7 @@ opponentHand.addEventListener("animationend", () => {
     }
     else if(opponentChoice == "✌️" && userChoice == "✋") {
         opponentWin();
-    }
+    };
 });
 
 function userWin() {
@@ -124,4 +131,13 @@ opponentHand.addEventListener("animationend", () => {
     count = 0;
     userScore.innerText = "Score: " + userScoreAmount;
     opponentScore.innerText = "Score: " + opponentScoreAmount;
+
+    if(opponentScoreAmount == 3) {
+        countdown.innerText = "You Lost!";
+        gameOver = true;
+    }
+    else if(userScoreAmount == 3) {
+        countdown.innerText = "You Won!";
+        gameOver = true;
+    };
 });
