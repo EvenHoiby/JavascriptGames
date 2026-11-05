@@ -4,6 +4,7 @@ const userHand = document.getElementById("userHand");
 const rockButton = document.getElementById("rock");
 const paperButton = document.getElementById("paper");
 const scissorsButton = document.getElementById("scissors");
+const rematchBtn = document.getElementById("rematchBtn"); 
 
 let userChoice;
 let opponentChoice;
@@ -135,11 +136,13 @@ opponentHand.addEventListener("animationend", () => {
     if(opponentScoreAmount == 3) {
         countdown.innerText = "You Lost!";
         gameOver = true;
+        rematchBtn.classList.remove("hidden");
         disableHover();
     }
     else if(userScoreAmount == 3) {
         countdown.innerText = "You Won!";
         gameOver = true;
+        rematchBtn.classList.remove("hidden");
         disableHover();
     };
 });
@@ -149,3 +152,24 @@ function disableHover() {
     paperButton.classList.add("noHover");
     scissorsButton.classList.add("noHover");
 };
+
+rematchBtn.addEventListener("click", ()=>{
+    restartGame();
+});
+
+function restartGame() {
+    userScoreAmount = 0;
+    opponentScoreAmount = 0;
+    userScore.innerText = "Score: " + userScoreAmount;
+    opponentScore.innerText = "Score: " + opponentScoreAmount;
+    rockButton.classList.remove("noHover");
+    paperButton.classList.remove("noHover");
+    scissorsButton.classList.remove("noHover");
+    countdown.innerText = "Best of 5!";
+    removeHandGlow();
+    userHand.innerText = "✊";
+    opponentHand.innerText = "✊";
+    gameOver = false;
+    rematchBtn.classList.add("hidden");
+    
+}
