@@ -32,9 +32,9 @@ answerBtn.addEventListener("click", ()=>{
         userAnswers.push(userInput.value);
         userGuess();
         holRespons();
+        guessCounter++
     }
     userInput.value = "";
-    guessCounter++
     guessAmount.innerText = `Guess: ${guessCounter}`;
 });
 
