@@ -9,9 +9,33 @@
     border: 5px solid #003366;
     background-color: #5b88b5;
     border-radius: 20px;
-    padding: 20px;
-    width: 480px;
-    height: 480px;
+    width: 500px;
+    height: 500px;
     display: flex;
-    position: absolute;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#snakeGame {
+    border: 5px solid #003366;
+    background-color: #98bbdf;
+    border-radius: 20px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+}
+
+#snakeRetryBtn {
+    padding: 6px 18px;
+    border: 3px solid #003366;
+    border-radius: 20px;
+    background-color: #a1b9d1;
+    color: #003366;
+    font-size: 15px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+#snakeRetryBtn:hover {
+    transform: scale(1.05);
 }
