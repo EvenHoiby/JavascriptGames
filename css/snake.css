@@ -21,9 +21,10 @@
     border: 5px solid #003366;
     background-color: #98bbdf;
     border-radius: 20px;
-    width: 80%;
-    height: 80%;
+    width: 400px;
+    height: 400px;
     display: flex;
+    position: relative;
 }
 
 #snakeRetryBtn {
