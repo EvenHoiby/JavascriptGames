@@ -2,6 +2,7 @@ const snakeGame = document.getElementById("snakeGame");
 const player = document.createElement("div");
 const snakeFood = document.createElement("div");
 let snakeGameOver = true;
+let playerChosen = false;
 let snakeAppendages = 0;
 
 // Player position
@@ -46,26 +47,30 @@ const snakeStart = document.getElementById("snakeStart");
 let playerDirection = "up";
 
 up.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "down"){
+    if(!snakeGameOver && playerDirection != "down" && !playerChosen){
         playerDirection = "up";
+        playerChosen = true;
     };
 });
 
 down.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "up"){
+    if(!snakeGameOver && playerDirection != "up" && !playerChosen){
         playerDirection = "down";
+        playerChosen = true;
     };
 });
 
 left.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "right"){
+    if(!snakeGameOver && playerDirection != "right" && !playerChosen){
         playerDirection = "left";
+        playerChosen = true;
     };
 });
 
 right.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "left"){
+    if(!snakeGameOver && playerDirection != "left" && !playerChosen){
         playerDirection = "right";
+        playerChosen = true;
     };
 });
 
@@ -95,6 +100,7 @@ function startGame(){
         }
 
         snakeEat(105, 105);
+        playerChosen = false;
     }, 1000);
 };
 
