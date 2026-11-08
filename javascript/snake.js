@@ -1,5 +1,6 @@
 const snakeGame = document.getElementById("snakeGame");
 const player = document.createElement("div");
+let snakeGameOver = true;
 
 // Player position
 player.style.position = "absolute";
@@ -21,29 +22,71 @@ const up = document.getElementById("up");
 const down = document.getElementById("down");
 const left = document.getElementById("left");
 const right = document.getElementById("right");
+const snakeRetryBtn = document.getElementById("snakeRetryBtn");
+const snakeStart = document.getElementById("snakeStart");
+let userPicked = false;
 
 up.addEventListener("click", ()=>{
-    yPlayerMove(25)
+    if(!userPicked && !snakeGameOver){
+        yPlayerMove(25);
+        userPicked = true;
+    };
 });
 
 down.addEventListener("click", ()=>{
-    yPlayerMove(-25)
+    if(!userPicked && !snakeGameOver){
+        yPlayerMove(-25);
+        userPicked = true;
+    };
 });
 
 left.addEventListener("click", ()=>{
-    xPlayerMove(-25)
+    if(!userPicked && !snakeGameOver){
+        xPlayerMove(-25);
+        userPicked = true;
+    };
 });
 
 right.addEventListener("click", ()=>{
-    xPlayerMove(25)
+    if(!userPicked && !snakeGameOver){
+        xPlayerMove(25);
+        userPicked = true;
+    };
 });
 
 function xPlayerMove(num){
     xPlayer += num;
-    player.style.left = xPlayer + "px";
 };
 
 function yPlayerMove(num){
     yPlayer += num;
-    player.style.bottom = yPlayer + "px";
+};
+
+snakeRetryBtn.addEventListener("click", ()=>{
+    xPlayer = 10;
+    yPlayer = 10;
+    startGame();
+});
+
+snakeStart.addEventListener("click", ()=>{
+    if(snakeGameOver){
+        startGame();
+        snakeGameOver = false;
+    }
+})
+
+function startGame(){
+    const gameTick = setInterval(()=>{
+        userPicked = false;
+        player.style.left = xPlayer + "px";
+        player.style.bottom = yPlayer + "px";
+        if(yPlayer >= 405 || yPlayer <= -20){
+            snakeGameOver = true;
+            clearInterval(gameTick);
+        }
+        else if(xPlayer >= 405 || xPlayer <= -20){
+            snakeGameOver = true;
+            clearInterval(gameTick);
+        }
+    }, 1000);
 };
