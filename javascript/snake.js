@@ -24,43 +24,32 @@ const left = document.getElementById("left");
 const right = document.getElementById("right");
 const snakeRetryBtn = document.getElementById("snakeRetryBtn");
 const snakeStart = document.getElementById("snakeStart");
-let userPicked = false;
+
+let playerDirection = "up";
 
 up.addEventListener("click", ()=>{
-    if(!userPicked && !snakeGameOver){
-        yPlayerMove(25);
-        userPicked = true;
+    if(!snakeGameOver){
+        playerDirection = "up";
     };
 });
 
 down.addEventListener("click", ()=>{
-    if(!userPicked && !snakeGameOver){
-        yPlayerMove(-25);
-        userPicked = true;
+    if(!snakeGameOver){
+        playerDirection = "down";
     };
 });
 
 left.addEventListener("click", ()=>{
-    if(!userPicked && !snakeGameOver){
-        xPlayerMove(-25);
-        userPicked = true;
+    if(!snakeGameOver){
+        playerDirection = "left";
     };
 });
 
 right.addEventListener("click", ()=>{
-    if(!userPicked && !snakeGameOver){
-        xPlayerMove(25);
-        userPicked = true;
+    if(!snakeGameOver){
+        playerDirection = "right";
     };
 });
-
-function xPlayerMove(num){
-    xPlayer += num;
-};
-
-function yPlayerMove(num){
-    yPlayer += num;
-};
 
 snakeRetryBtn.addEventListener("click", ()=>{
     xPlayer = 10;
@@ -77,7 +66,7 @@ snakeStart.addEventListener("click", ()=>{
 
 function startGame(){
     const gameTick = setInterval(()=>{
-        userPicked = false;
+        playerMove();
         player.style.left = xPlayer + "px";
         player.style.bottom = yPlayer + "px";
         if(yPlayer >= 405 || yPlayer <= -20){
@@ -89,4 +78,19 @@ function startGame(){
             clearInterval(gameTick);
         }
     }, 1000);
+};
+
+function playerMove(){
+    if(playerDirection == "up"){
+        yPlayer += 25;
+    }
+    else if(playerDirection == "down"){
+        yPlayer += -25;
+    }
+    else if(playerDirection == "left"){
+        xPlayer += -25;
+    }
+    else if(playerDirection == "right"){
+        xPlayer += 25;
+    }
 };
