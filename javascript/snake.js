@@ -51,16 +51,13 @@ right.addEventListener("click", ()=>{
     };
 });
 
-snakeRetryBtn.addEventListener("click", ()=>{
-    xPlayer = 10;
-    yPlayer = 10;
-    startGame();
-});
-
 snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
-        startGame();
         snakeGameOver = false;
+        playerDirection = "up"
+        xPlayer = 10;
+        yPlayer = 10;
+        startGame();
     }
 })
 
@@ -69,11 +66,11 @@ function startGame(){
         playerMove();
         player.style.left = xPlayer + "px";
         player.style.bottom = yPlayer + "px";
-        if(yPlayer >= 405 || yPlayer <= -20){
+        if(yPlayer >= 400 || yPlayer <= -10){
             snakeGameOver = true;
             clearInterval(gameTick);
         }
-        else if(xPlayer >= 405 || xPlayer <= -20){
+        else if(xPlayer >= 400 || xPlayer <= -10){
             snakeGameOver = true;
             clearInterval(gameTick);
         }
