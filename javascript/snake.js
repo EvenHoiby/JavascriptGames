@@ -2,6 +2,7 @@ const snakeGame = document.getElementById("snakeGame");
 const player = document.createElement("div");
 const snakeFood = document.createElement("div");
 let snakeGameOver = true;
+let snakeAppendages = 0;
 
 // Player position
 player.style.position = "absolute";
@@ -83,6 +84,7 @@ function startGame(){
         playerMove();
         player.style.left = xPlayer + "px";
         player.style.bottom = yPlayer + "px";
+
         if(yPlayer >= 400 || yPlayer <= -10){
             snakeGameOver = true;
             clearInterval(gameTick);
@@ -91,6 +93,8 @@ function startGame(){
             snakeGameOver = true;
             clearInterval(gameTick);
         }
+
+        snakeEat(105, 105);
     }, 1000);
 };
 
@@ -106,5 +110,12 @@ function playerMove(){
     }
     else if(playerDirection == "right"){
         xPlayer += 25;
+    }
+};
+
+function snakeEat(foodX, foodY){
+    if(xPlayer == foodX && yPlayer == foodY){
+        snakeAppendages++;
+        console.log(snakeAppendages);
     }
 };
