@@ -38,6 +38,6 @@
     font-weight: bold;
     transition: transform 0.2s;
 }
-#snakeRetryBtn:hover {
+.snakeBtn:hover {
     transform: scale(1.05);
 }
