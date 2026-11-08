@@ -28,7 +28,7 @@
     position: relative;
 }
 
-#snakeRetryBtn {
+.snakeBtn {
     padding: 6px 18px;
     border: 3px solid #003366;
     border-radius: 20px;
