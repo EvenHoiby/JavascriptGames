@@ -1,5 +1,6 @@
 const snakeGame = document.getElementById("snakeGame");
 const player = document.createElement("div");
+const snakeFood = document.createElement("div");
 let snakeGameOver = true;
 
 // Player position
@@ -8,6 +9,7 @@ player.style.height = "25px";
 player.style.width = "25px";
 player.style.borderRadius = "5px";
 player.style.backgroundColor = "#003366";
+player.style.zIndex = 2;
 
 let xPlayer = 5;
 let yPlayer = 5;
@@ -16,6 +18,21 @@ player.style.left = xPlayer + "px";
 player.style.bottom = yPlayer + "px";
 
 snakeGame.append(player);
+
+// Snake food position
+snakeFood.style.position = "absolute";
+snakeFood.style.height = "25px";
+snakeFood.style.width = "25px";
+snakeFood.style.borderRadius = "5px";
+snakeFood.style.backgroundColor = "#b82808";
+
+let xSnakeFood = 105;
+let ySnakeFood = 105;
+
+snakeFood.style.left = xSnakeFood + "px";
+snakeFood.style.bottom = ySnakeFood + "px";
+
+snakeGame.append(snakeFood);
 
 // Button imputs
 const up = document.getElementById("up");
