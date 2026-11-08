@@ -55,8 +55,8 @@ snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
         snakeGameOver = false;
         playerDirection = "up"
-        xPlayer = 10;
-        yPlayer = 10;
+        xPlayer = 5;
+        yPlayer = 5;
         startGame();
     }
 })
