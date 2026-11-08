@@ -28,25 +28,25 @@ const snakeStart = document.getElementById("snakeStart");
 let playerDirection = "up";
 
 up.addEventListener("click", ()=>{
-    if(!snakeGameOver){
+    if(!snakeGameOver && playerDirection != "down"){
         playerDirection = "up";
     };
 });
 
 down.addEventListener("click", ()=>{
-    if(!snakeGameOver){
+    if(!snakeGameOver && playerDirection != "up"){
         playerDirection = "down";
     };
 });
 
 left.addEventListener("click", ()=>{
-    if(!snakeGameOver){
+    if(!snakeGameOver && playerDirection != "right"){
         playerDirection = "left";
     };
 });
 
 right.addEventListener("click", ()=>{
-    if(!snakeGameOver){
+    if(!snakeGameOver && playerDirection != "left"){
         playerDirection = "right";
     };
 });
