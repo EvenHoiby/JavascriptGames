@@ -216,6 +216,22 @@ function startGame(){
             snakeEat(player2Appendage);
         }
 
+        let totalLength = playerAppendage.length;
+        if(twoPlayer){
+            totalLength +=player2Appendage.length;
+        }
+
+        if(totalLength == 100){
+            clearSnakes();
+            playerPosition(playerAppendage, "#003366");
+            if(twoPlayer){
+                playerPosition(player2Appendage, "#807815")
+            }
+            clearInterval(gameTick);
+            gameEnd(false, false);
+            return;
+        }
+
         foodPositionValidCheck();
 
         clearSnakes();
@@ -268,16 +284,19 @@ function gameEnd(p1Crashed, p2Crashed){
         else if(p2Crashed){
             whoWon.innerText = "Player 2 crashed!"
         }
+        else{
+            whoWon.innerText = "Full board!"
+        }
         snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
     }
     else{
-        if(playerAppendage.length == 100){
-            whoWon.innerText = "You won!";
-        }
-        else{
+        if(p1Crashed){
             whoWon.innerText = "You crashed!";
         }
-
+        else{
+            whoWon.innerText = "You won!";
+        }
+        
         if((playerAppendage.length - 1) > currentSnakeHighscore){
             currentSnakeHighscore = (playerAppendage.length - 1);
         }
