@@ -40,19 +40,40 @@ function moveBody(){
 };
 
 // Snake food position
-snakeFood.style.position = "absolute";
-snakeFood.style.height = "25px";
-snakeFood.style.width = "25px";
-snakeFood.style.borderRadius = "5px";
-snakeFood.style.backgroundColor = "#b82808";
+let xSnakeFood;
+let ySnakeFood;
 
-let xSnakeFood = 105;
-let ySnakeFood = 105;
+foodRandomLocation();
+foodPosition();
 
-snakeFood.style.left = xSnakeFood + "px";
-snakeFood.style.bottom = ySnakeFood + "px";
+function foodRandomLocation(){
+    xSnakeFood = 5 + (25 * Math.floor(Math.random() * 16));
+    ySnakeFood = 5 + (25 * Math.floor(Math.random() * 16));
+    foodPositionValidCheck();
+    foodPosition();
+    
+}
 
-snakeGame.append(snakeFood);
+function foodPositionValidCheck(){
+    for(let i = 0; i < playerAppendage.length; i++){
+        if(xSnakeFood == playerAppendage[i].xPlayer && ySnakeFood == playerAppendage[i].yPlayer){
+            foodRandomLocation();
+        }
+    }
+}
+
+function foodPosition(){
+    snakeFood.style.position = "absolute";
+    snakeFood.style.height = "25px";
+    snakeFood.style.width = "25px";
+    snakeFood.style.borderRadius = "5px";
+    snakeFood.style.backgroundColor = "#b82808";
+    
+    snakeFood.style.left = xSnakeFood + "px";
+    snakeFood.style.bottom = ySnakeFood + "px";
+    
+    snakeGame.append(snakeFood);
+};
 
 // Button imputs
 const snakeStart = document.getElementById("snakeStart");
@@ -115,7 +136,8 @@ function startGame(){
             }
         }
 
-        snakeEat(105, 105);
+        snakeEat(xSnakeFood, ySnakeFood);
+        foodPositionValidCheck();
         playerPosition();
         playerChosen = false;
     }, 400);
