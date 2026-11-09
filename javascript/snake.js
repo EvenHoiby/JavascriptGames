@@ -144,7 +144,7 @@ snakeStart2.addEventListener("click", ()=>{
 
 // What direction is each player currently going
 let playerDirection = "up";
-let player2Direction = "w";
+let player2Direction = "up";
 
 
 // User keyboard inputs
@@ -261,16 +261,14 @@ function gameEnd(p1Crashed, p2Crashed){
     if(twoPlayer){
         if(p1Crashed && p2Crashed){
             whoWon.innerText = "Both crashed!"
-            snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
         }
         else if(p1Crashed){
             whoWon.innerText = "Player 1 crashed!"
-            snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
         }
         else if(p2Crashed){
             whoWon.innerText = "Player 2 crashed!"
-            snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
         }
+        snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
     }
     else{
         if(playerAppendage.length == 100){
