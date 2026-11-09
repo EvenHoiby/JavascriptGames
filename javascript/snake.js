@@ -1,6 +1,7 @@
 const snakeGame = document.getElementById("snakeGame");
 const snakeFood = document.createElement("div");
 const snakeHighscore = document.getElementById("snakeHighscore");
+const whoWon = document.getElementById("whoWon");
 let snakeGameOver = true;
 let playerChosen = false;
 let player2Chosen = false;
@@ -97,6 +98,7 @@ const snakeGameDisplay = document.getElementById("snakeGameDisplay");
 
 snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
+        whoWon.innerText = "";
         clearSnakes();
 
         twoPlayer = false;
@@ -115,6 +117,7 @@ snakeStart.addEventListener("click", ()=>{
 
 snakeStart2.addEventListener("click", ()=>{
     if(snakeGameOver){
+        whoWon.innerText = "";
         clearSnakes();
 
         twoPlayer = true;
@@ -197,8 +200,8 @@ function startGame(){
         }
 
         if(p1Crashed || p2Crashed){
-            gameEnd();
             clearInterval(gameTick);
+            gameEnd(p1Crashed, p2Crashed);
             return;
         }
 
@@ -217,7 +220,7 @@ function startGame(){
 
         playerChosen = false;
         player2Chosen = false;
-    }, 300);
+    }, 350);
 };
 
 function snakeCrashed(snake, otherSnake){
@@ -243,13 +246,28 @@ function snakeCrashed(snake, otherSnake){
     return false;
 };
 
-function gameEnd(){
+function gameEnd(p1Crashed, p2Crashed){
     snakeGameOver = true;
-    if((playerAppendage.length - 1) > currentSnakeHighscore){
+    snakeGameDisplay.classList.remove("hidden");
+
+    if(twoPlayer){
+        if(p1Crashed && p2Crashed){
+            whoWon.innerText = "Both crashed!"
+            snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
+        }
+        else if(p1Crashed){
+            whoWon.innerText = "Player 1 crashed!"
+            snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
+        }
+        else if(p2Crashed){
+            whoWon.innerText = "Player 2 crashed!"
+            snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
+        }
+    }
+    else if((playerAppendage.length - 1) > currentSnakeHighscore){
         currentSnakeHighscore = (playerAppendage.length - 1);
         snakeHighscore.innerText = "Highscore: " + currentSnakeHighscore;
     }
-    snakeGameDisplay.classList.remove("hidden");
 }
 
 function playerMove(snake, direction){
