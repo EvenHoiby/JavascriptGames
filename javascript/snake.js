@@ -108,6 +108,13 @@ function startGame(){
             clearInterval(gameTick);
         }
 
+        for(let i = 1; i < playerAppendage.length; i++){
+            if(playerAppendage[0].xPlayer == playerAppendage[i].xPlayer && playerAppendage[0].yPlayer == playerAppendage[i].yPlayer){
+                snakeGameOver = true;
+                clearInterval(gameTick);
+            }
+        }
+
         snakeEat(105, 105);
         playerPosition();
         playerChosen = false;
