@@ -44,7 +44,6 @@ let xSnakeFood;
 let ySnakeFood;
 
 foodRandomLocation();
-foodPosition();
 
 function foodRandomLocation(){
     xSnakeFood = 5 + (25 * Math.floor(Math.random() * 16));
@@ -77,10 +76,12 @@ function foodPosition(){
 
 // Button imputs
 const snakeStart = document.getElementById("snakeStart");
+const snakeGameDisplay = document.getElementById("snakeGameDisplay");
 
 snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
         snakeGameOver = false;
+        snakeGameDisplay.classList.add("hidden");
         playerDirection = "up"
         playerAppendage.length = 1;
         playerAppendage[0].xPlayer = 5;
@@ -123,16 +124,22 @@ function startGame(){
         if(playerAppendage[0].yPlayer >= 400 || playerAppendage[0].yPlayer <= -10){
             snakeGameOver = true;
             clearInterval(gameTick);
+            snakeGameDisplay.classList.remove("hidden");
+            return;
         }
         else if(playerAppendage[0].xPlayer >= 400 || playerAppendage[0].xPlayer <= -10){
             snakeGameOver = true;
             clearInterval(gameTick);
+            snakeGameDisplay.classList.remove("hidden");
+            return;
         }
 
         for(let i = 1; i < playerAppendage.length; i++){
             if(playerAppendage[0].xPlayer == playerAppendage[i].xPlayer && playerAppendage[0].yPlayer == playerAppendage[i].yPlayer){
                 snakeGameOver = true;
                 clearInterval(gameTick);
+                snakeGameDisplay.classList.remove("hidden");
+                return;
             }
         }
 
