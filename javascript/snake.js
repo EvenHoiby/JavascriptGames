@@ -97,20 +97,26 @@ const snakeGameDisplay = document.getElementById("snakeGameDisplay");
 
 snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
+        clearSnakes();
+
         twoPlayer = false;
         snakeGameOver = false;
         snakeGameDisplay.classList.add("hidden");
+        
         playerDirection = "up"
         playerAppendage.length = 1;
         playerAppendage[0].xPlayer = 165;
         playerAppendage[0].yPlayer = 5;
         playerPosition(playerAppendage, "#003366");
+        
         startGame();
     }
 })
 
 snakeStart2.addEventListener("click", ()=>{
     if(snakeGameOver){
+        clearSnakes();
+
         twoPlayer = true;
         snakeGameOver = false;
         snakeGameDisplay.classList.add("hidden");
