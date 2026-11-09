@@ -7,17 +7,18 @@ let playerChosen = false;
 let currentSnakeHighscore = 0;
 
 // Player position
-const playerAppendage = [{xPlayer: 5, yPlayer: 5}];
+const playerAppendage = [{xPlayer: 165, yPlayer: 5}];
+const player2Appendage = [{xPlayer: 205, yPlayer: 5}];
 
-playerPosition();
+playerPosition(playerAppendage, "#003366");
 
-function playerPosition(){
+function playerPosition(snake, color){
     const oldParts = snakeGame.querySelectorAll(".snakePart");
     for(let i = 0; i < oldParts.length; i++){
         oldParts[i].remove();
     }
 
-    for(let i = 0; i < playerAppendage.length; i++){
+    for(let i = 0; i < snake.length; i++){
         const player = document.createElement("div");
         player.classList.add("snakePart");
 
@@ -25,11 +26,11 @@ function playerPosition(){
         player.style.height = "40px";
         player.style.width = "40px";
         player.style.borderRadius = "5px";
-        player.style.backgroundColor = "#003366";
+        player.style.backgroundColor = `${color}`;
         player.style.zIndex = 2;
         
-        player.style.left = playerAppendage[i].xPlayer + "px";
-        player.style.bottom = playerAppendage[i].yPlayer + "px";
+        player.style.left = snake[i].xPlayer + "px";
+        player.style.bottom = snake[i].yPlayer + "px";
         
         snakeGame.append(player);
     }
@@ -79,6 +80,7 @@ function foodPosition(){
 
 // Button imputs
 const snakeStart = document.getElementById("snakeStart");
+const snakeStart2 = document.getElementById("snakeStart2");
 const snakeGameDisplay = document.getElementById("snakeGameDisplay");
 
 snakeStart.addEventListener("click", ()=>{
@@ -87,9 +89,9 @@ snakeStart.addEventListener("click", ()=>{
         snakeGameDisplay.classList.add("hidden");
         playerDirection = "up"
         playerAppendage.length = 1;
-        playerAppendage[0].xPlayer = 5;
+        playerAppendage[0].xPlayer = 165;
         playerAppendage[0].yPlayer = 5;
-        playerPosition();
+        playerPosition(playerAppendage, "#003366");
         startGame();
     }
 })
@@ -146,14 +148,14 @@ function startGame(){
         snakeEat(xSnakeFood, ySnakeFood);
 
         if(playerAppendage.length == 100){
-            playerPosition();
+            playerPosition(playerAppendage, "#003366");
             gameEnd();
             clearInterval(gameTick);
             return;
         }
 
         foodPositionValidCheck();
-        playerPosition();
+        playerPosition(playerAppendage, "#003366");
         playerChosen = false;
     }, 300);
 };
