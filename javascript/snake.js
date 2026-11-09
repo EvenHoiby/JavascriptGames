@@ -1,7 +1,10 @@
 const snakeGame = document.getElementById("snakeGame");
 const snakeFood = document.createElement("div");
+const snakeHighscore = document.getElementById("snakeHighscore");
 let snakeGameOver = true;
 let playerChosen = false;
+
+let currentSnakeHighscore = 0;
 
 // Player position
 const playerAppendage = [{xPlayer: 5, yPlayer: 5}];
@@ -122,23 +125,20 @@ function startGame(){
         playerMove();
 
         if(playerAppendage[0].yPlayer >= 400 || playerAppendage[0].yPlayer <= -10){
-            snakeGameOver = true;
+            gameEnd();
             clearInterval(gameTick);
-            snakeGameDisplay.classList.remove("hidden");
             return;
         }
         else if(playerAppendage[0].xPlayer >= 400 || playerAppendage[0].xPlayer <= -10){
-            snakeGameOver = true;
+            gameEnd();
             clearInterval(gameTick);
-            snakeGameDisplay.classList.remove("hidden");
             return;
         }
 
         for(let i = 1; i < playerAppendage.length; i++){
             if(playerAppendage[0].xPlayer == playerAppendage[i].xPlayer && playerAppendage[0].yPlayer == playerAppendage[i].yPlayer){
-                snakeGameOver = true;
+                gameEnd();
                 clearInterval(gameTick);
-                snakeGameDisplay.classList.remove("hidden");
                 return;
             }
         }
@@ -149,6 +149,15 @@ function startGame(){
         playerChosen = false;
     }, 400);
 };
+
+function gameEnd(){
+    snakeGameOver = true;
+    if((playerAppendage.length - 1) > currentSnakeHighscore){
+        currentSnakeHighscore = (playerAppendage.length - 1);
+        snakeHighscore.innerText = "Highscore: " + currentSnakeHighscore;
+    }
+    snakeGameDisplay.classList.remove("hidden");
+}
 
 function playerMove(){
     if(playerDirection == "up"){
