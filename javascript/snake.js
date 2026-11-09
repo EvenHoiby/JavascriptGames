@@ -22,8 +22,8 @@ function playerPosition(){
         player.classList.add("snakePart");
 
         player.style.position = "absolute";
-        player.style.height = "25px";
-        player.style.width = "25px";
+        player.style.height = "40px";
+        player.style.width = "40px";
         player.style.borderRadius = "5px";
         player.style.backgroundColor = "#003366";
         player.style.zIndex = 2;
@@ -49,8 +49,8 @@ let ySnakeFood;
 foodRandomLocation();
 
 function foodRandomLocation(){
-    xSnakeFood = 5 + (25 * Math.floor(Math.random() * 16));
-    ySnakeFood = 5 + (25 * Math.floor(Math.random() * 16));
+    xSnakeFood = 5 + (40 * Math.floor(Math.random() * 10));
+    ySnakeFood = 5 + (40 * Math.floor(Math.random() * 10));
     foodPositionValidCheck();
     foodPosition();
     
@@ -66,8 +66,8 @@ function foodPositionValidCheck(){
 
 function foodPosition(){
     snakeFood.style.position = "absolute";
-    snakeFood.style.height = "25px";
-    snakeFood.style.width = "25px";
+    snakeFood.style.height = "40px";
+    snakeFood.style.width = "40px";
     snakeFood.style.borderRadius = "5px";
     snakeFood.style.backgroundColor = "#b82808";
     
@@ -145,7 +145,7 @@ function startGame(){
 
         snakeEat(xSnakeFood, ySnakeFood);
 
-        if(playerAppendage.length == 256){
+        if(playerAppendage.length == 100){
             playerPosition();
             gameEnd();
             clearInterval(gameTick);
@@ -155,7 +155,7 @@ function startGame(){
         foodPositionValidCheck();
         playerPosition();
         playerChosen = false;
-    }, 400);
+    }, 300);
 };
 
 function gameEnd(){
@@ -169,16 +169,16 @@ function gameEnd(){
 
 function playerMove(){
     if(playerDirection == "up"){
-        playerAppendage[0].yPlayer += 25;
+        playerAppendage[0].yPlayer += 40;
     }
     else if(playerDirection == "down"){
-        playerAppendage[0].yPlayer += -25;
+        playerAppendage[0].yPlayer += -40;
     }
     else if(playerDirection == "left"){
-        playerAppendage[0].xPlayer += -25;
+        playerAppendage[0].xPlayer += -40;
     }
     else if(playerDirection == "right"){
-        playerAppendage[0].xPlayer += 25;
+        playerAppendage[0].xPlayer += 40;
     }
 };
 
