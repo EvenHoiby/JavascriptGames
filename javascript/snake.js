@@ -3,6 +3,8 @@ const snakeFood = document.createElement("div");
 const snakeHighscore = document.getElementById("snakeHighscore");
 let snakeGameOver = true;
 let playerChosen = false;
+let player2Chosen = false;
+let twoPlayer = false;
 
 let currentSnakeHighscore = 0;
 
@@ -13,11 +15,6 @@ const player2Appendage = [{xPlayer: 205, yPlayer: 5}];
 playerPosition(playerAppendage, "#003366");
 
 function playerPosition(snake, color){
-    const oldParts = snakeGame.querySelectorAll(".snakePart");
-    for(let i = 0; i < oldParts.length; i++){
-        oldParts[i].remove();
-    }
-
     for(let i = 0; i < snake.length; i++){
         const player = document.createElement("div");
         player.classList.add("snakePart");
@@ -36,10 +33,17 @@ function playerPosition(snake, color){
     }
 }
 
-function moveBody(){
-    for(let i = playerAppendage.length - 1; i > 0; i--){
-        playerAppendage[i].xPlayer = playerAppendage[i - 1].xPlayer;
-        playerAppendage[i].yPlayer = playerAppendage[i - 1].yPlayer;
+function clearSnakes(){
+    const oldParts = snakeGame.querySelectorAll(".snakePart");
+    for(let i = 0; i < oldParts.length; i++){
+        oldParts[i].remove();
+    }
+};
+
+function moveBody(snake){
+    for(let i = snake.length - 1; i > 0; i--){
+        snake[i].xPlayer = snake[i - 1].xPlayer;
+        snake[i].yPlayer = snake[i - 1].yPlayer;
     }
 };
 
@@ -61,6 +65,14 @@ function foodPositionValidCheck(){
     for(let i = 0; i < playerAppendage.length; i++){
         if(xSnakeFood == playerAppendage[i].xPlayer && ySnakeFood == playerAppendage[i].yPlayer){
             foodRandomLocation();
+        }
+    }
+
+    if(twoPlayer){
+        for(let i = 0; i < player2Appendage.length; i++){
+            if(xSnakeFood == player2Appendage[i].xPlayer && ySnakeFood == player2Appendage[i].yPlayer){
+                foodRandomLocation();
+            }
         }
     }
 }
@@ -85,6 +97,7 @@ const snakeGameDisplay = document.getElementById("snakeGameDisplay");
 
 snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
+        twoPlayer = false;
         snakeGameOver = false;
         snakeGameDisplay.classList.add("hidden");
         playerDirection = "up"
@@ -96,7 +109,30 @@ snakeStart.addEventListener("click", ()=>{
     }
 })
 
+snakeStart2.addEventListener("click", ()=>{
+    if(snakeGameOver){
+        twoPlayer = true;
+        snakeGameOver = false;
+        snakeGameDisplay.classList.add("hidden");
+
+        playerDirection = "up"
+        playerAppendage.length = 1;
+        playerAppendage[0].xPlayer = 165;
+        playerAppendage[0].yPlayer = 5;
+        playerPosition(playerAppendage, "#003366");
+        
+        player2Direction = "up"
+        player2Appendage.length = 1;
+        player2Appendage[0].xPlayer = 205;
+        player2Appendage[0].yPlayer = 5;
+        playerPosition(player2Appendage, "#807815");
+
+        startGame();
+    }
+})
+
 let playerDirection = "up";
+let player2Direction = "w";
 
 document.addEventListener("keydown", (e)=>{
     if(e.key.startsWith("Arrow") && !snakeGameOver){
@@ -119,45 +155,86 @@ document.addEventListener("keydown", (e)=>{
         playerDirection = "right";
         playerChosen = true;
     };
+
+    if(e.key == "w" && !snakeGameOver && player2Direction != "down" && !player2Chosen){
+        player2Direction = "up";
+        player2Chosen = true;
+    }
+    else if(e.key == "s" && !snakeGameOver && player2Direction != "up" && !player2Chosen){
+        player2Direction = "down";
+        player2Chosen = true;
+    }
+    else if(e.key == "a" && !snakeGameOver && player2Direction != "right" && !player2Chosen){
+        player2Direction = "left";
+        player2Chosen = true;
+    }
+    else if(e.key == "d" && !snakeGameOver && player2Direction != "left" && !player2Chosen){
+        player2Direction = "right";
+        player2Chosen = true;
+    };
 })
 
 function startGame(){
     const gameTick = setInterval(()=>{
-        moveBody();
-        playerMove();
+        moveBody(playerAppendage);
+        playerMove(playerAppendage, playerDirection);
 
-        if(playerAppendage[0].yPlayer >= 400 || playerAppendage[0].yPlayer <= -10){
+        if(twoPlayer){
+            moveBody(player2Appendage);
+            playerMove(player2Appendage, player2Direction);
+        }
+
+        let p1Crashed = snakeCrashed(playerAppendage, player2Appendage)
+        let p2Crashed = false;
+        if(twoPlayer){
+            p2Crashed = snakeCrashed(player2Appendage, playerAppendage)
+        }
+
+        if(p1Crashed || p2Crashed){
             gameEnd();
             clearInterval(gameTick);
             return;
         }
-        else if(playerAppendage[0].xPlayer >= 400 || playerAppendage[0].xPlayer <= -10){
-            gameEnd();
-            clearInterval(gameTick);
-            return;
-        }
 
-        for(let i = 1; i < playerAppendage.length; i++){
-            if(playerAppendage[0].xPlayer == playerAppendage[i].xPlayer && playerAppendage[0].yPlayer == playerAppendage[i].yPlayer){
-                gameEnd();
-                clearInterval(gameTick);
-                return;
-            }
-        }
-
-        snakeEat(xSnakeFood, ySnakeFood);
-
-        if(playerAppendage.length == 100){
-            playerPosition(playerAppendage, "#003366");
-            gameEnd();
-            clearInterval(gameTick);
-            return;
+        snakeEat(playerAppendage);
+        if(twoPlayer){
+            snakeEat(player2Appendage);
         }
 
         foodPositionValidCheck();
+
+        clearSnakes();
         playerPosition(playerAppendage, "#003366");
+        if(twoPlayer){
+            playerPosition(player2Appendage, "#807815")
+        }
+
         playerChosen = false;
+        player2Chosen = false;
     }, 300);
+};
+
+function snakeCrashed(snake, otherSnake){
+    const head = snake[0];
+    if(head.yPlayer >= 400 || head.yPlayer <= -10 || head.xPlayer >= 400 || head.xPlayer <= -10){
+            return true;
+        }
+
+    for(let i = 1; i < snake.length; i++){
+        if(head.xPlayer == snake[i].xPlayer && head.yPlayer == snake[i].yPlayer){
+            return true;
+        }
+    }
+
+    if(twoPlayer){
+        for(let i = 0; i < otherSnake.length; i++){
+            if(head.xPlayer == otherSnake[i].xPlayer && head.yPlayer == otherSnake[i].yPlayer){
+                return true;
+            }
+        }
+    }
+
+    return false;
 };
 
 function gameEnd(){
@@ -169,24 +246,24 @@ function gameEnd(){
     snakeGameDisplay.classList.remove("hidden");
 }
 
-function playerMove(){
-    if(playerDirection == "up"){
-        playerAppendage[0].yPlayer += 40;
+function playerMove(snake, direction){
+    if(direction == "up"){
+        snake[0].yPlayer += 40;
     }
-    else if(playerDirection == "down"){
-        playerAppendage[0].yPlayer += -40;
+    else if(direction == "down"){
+        snake[0].yPlayer += -40;
     }
-    else if(playerDirection == "left"){
-        playerAppendage[0].xPlayer += -40;
+    else if(direction == "left"){
+        snake[0].xPlayer += -40;
     }
-    else if(playerDirection == "right"){
-        playerAppendage[0].xPlayer += 40;
+    else if(direction == "right"){
+        snake[0].xPlayer += 40;
     }
 };
 
-function snakeEat(foodX, foodY){
-    if(playerAppendage[0].xPlayer == foodX && playerAppendage[0].yPlayer == foodY){
-        const tail = playerAppendage[playerAppendage.length - 1];
-        playerAppendage.push({xPlayer: tail.xPlayer, yPlayer: tail.yPlayer});
+function snakeEat(snake){
+    if(snake[0].xPlayer == xSnakeFood && snake[0].yPlayer == ySnakeFood){
+        const tail = snake[snake.length - 1];
+        snake.push({xPlayer: tail.xPlayer, yPlayer: tail.yPlayer});
     }
 };
