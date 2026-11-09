@@ -10,8 +10,8 @@ let twoPlayer = false;
 let currentSnakeHighscore = 0;
 
 // Player positions
-const playerAppendage = [{xPlayer: 165, yPlayer: 5}];
-const player2Appendage = [{xPlayer: 205, yPlayer: 5}];
+const playerAppendage = [{xPlayer: 205, yPlayer: 5}];
+const player2Appendage = [{xPlayer: 165, yPlayer: 5}];
 
 playerPosition(playerAppendage, "#003366");
 
@@ -109,7 +109,7 @@ snakeStart.addEventListener("click", ()=>{
         
         playerDirection = "up"
         playerAppendage.length = 1;
-        playerAppendage[0].xPlayer = 165;
+        playerAppendage[0].xPlayer = 205;
         playerAppendage[0].yPlayer = 5;
         playerPosition(playerAppendage, "#003366");
         
@@ -128,13 +128,13 @@ snakeStart2.addEventListener("click", ()=>{
 
         playerDirection = "up"
         playerAppendage.length = 1;
-        playerAppendage[0].xPlayer = 165;
+        playerAppendage[0].xPlayer = 205;
         playerAppendage[0].yPlayer = 5;
         playerPosition(playerAppendage, "#003366");
         
         player2Direction = "up"
         player2Appendage.length = 1;
-        player2Appendage[0].xPlayer = 205;
+        player2Appendage[0].xPlayer = 165;
         player2Appendage[0].yPlayer = 5;
         playerPosition(player2Appendage, "#807815");
 
@@ -273,6 +273,13 @@ function gameEnd(p1Crashed, p2Crashed){
         }
     }
     else{
+        if(playerAppendage.length == 100){
+            whoWon.innerText = "You won!";
+        }
+        else{
+            whoWon.innerText = "You crashed!";
+        }
+
         if((playerAppendage.length - 1) > currentSnakeHighscore){
             currentSnakeHighscore = (playerAppendage.length - 1);
         }
