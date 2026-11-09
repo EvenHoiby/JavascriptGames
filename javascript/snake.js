@@ -9,7 +9,7 @@ let twoPlayer = false;
 
 let currentSnakeHighscore = 0;
 
-// Player position
+// Player positions
 const playerAppendage = [{xPlayer: 165, yPlayer: 5}];
 const player2Appendage = [{xPlayer: 205, yPlayer: 5}];
 
@@ -34,6 +34,7 @@ function playerPosition(snake, color){
     }
 }
 
+// Removes snakes's old positions
 function clearSnakes(){
     const oldParts = snakeGame.querySelectorAll(".snakePart");
     for(let i = 0; i < oldParts.length; i++){
@@ -41,6 +42,7 @@ function clearSnakes(){
     }
 };
 
+// Moves snake body to next position
 function moveBody(snake){
     for(let i = snake.length - 1; i > 0; i--){
         snake[i].xPlayer = snake[i - 1].xPlayer;
@@ -52,8 +54,8 @@ function moveBody(snake){
 let xSnakeFood;
 let ySnakeFood;
 
+// Chooses random spot for food which is not occupied
 foodRandomLocation();
-
 function foodRandomLocation(){
     xSnakeFood = 5 + (40 * Math.floor(Math.random() * 10));
     ySnakeFood = 5 + (40 * Math.floor(Math.random() * 10));
@@ -91,7 +93,7 @@ function foodPosition(){
     snakeGame.append(snakeFood);
 };
 
-// Button imputs
+// Start game buttons
 const snakeStart = document.getElementById("snakeStart");
 const snakeStart2 = document.getElementById("snakeStart2");
 const snakeGameDisplay = document.getElementById("snakeGameDisplay");
@@ -140,9 +142,12 @@ snakeStart2.addEventListener("click", ()=>{
     }
 })
 
+// What direction is each player currently going
 let playerDirection = "up";
 let player2Direction = "w";
 
+
+// User keyboard inputs
 document.addEventListener("keydown", (e)=>{
     if(e.key.startsWith("Arrow") && !snakeGameOver){
         e.preventDefault();
@@ -183,6 +188,7 @@ document.addEventListener("keydown", (e)=>{
     };
 })
 
+// Starts the games tick which moves everything in intervals
 function startGame(){
     const gameTick = setInterval(()=>{
         moveBody(playerAppendage);
@@ -223,6 +229,7 @@ function startGame(){
     }, 350);
 };
 
+// Checks if a snake has crashed
 function snakeCrashed(snake, otherSnake){
     const head = snake[0];
     if(head.yPlayer >= 400 || head.yPlayer <= -10 || head.xPlayer >= 400 || head.xPlayer <= -10){
@@ -246,6 +253,7 @@ function snakeCrashed(snake, otherSnake){
     return false;
 };
 
+// Ends the game and displays stats
 function gameEnd(p1Crashed, p2Crashed){
     snakeGameOver = true;
     snakeGameDisplay.classList.remove("hidden");
@@ -270,6 +278,7 @@ function gameEnd(p1Crashed, p2Crashed){
     }
 }
 
+// Moves the head of the snake one square towards chosen direction
 function playerMove(snake, direction){
     if(direction == "up"){
         snake[0].yPlayer += 40;
@@ -285,6 +294,7 @@ function playerMove(snake, direction){
     }
 };
 
+// Checks if snake head is on food
 function snakeEat(snake){
     if(snake[0].xPlayer == xSnakeFood && snake[0].yPlayer == ySnakeFood){
         const tail = snake[snake.length - 1];
