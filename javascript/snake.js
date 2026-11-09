@@ -84,6 +84,29 @@ snakeStart.addEventListener("click", ()=>{
     }
 })
 
+document.addEventListener("keydown", (e)=>{
+    if(e.key.startsWith("Arrow") && !snakeGameOver){
+        e.preventDefault();
+    };
+    
+    if(e.key == "ArrowUp" && !snakeGameOver && playerDirection != "down" && !playerChosen){
+        playerDirection = "up";
+        playerChosen = true;
+    }
+    else if(e.key == "ArrowDown" && !snakeGameOver && playerDirection != "up" && !playerChosen){
+        playerDirection = "down";
+        playerChosen = true;
+    }
+    else if(e.key == "ArrowLeft" && !snakeGameOver && playerDirection != "right" && !playerChosen){
+        playerDirection = "left";
+        playerChosen = true;
+    }
+    else if(e.key == "ArrowRight" && !snakeGameOver && playerDirection != "left" && !playerChosen){
+        playerDirection = "right";
+        playerChosen = true;
+    };
+})
+
 function startGame(){
     const gameTick = setInterval(()=>{
         playerMove();
