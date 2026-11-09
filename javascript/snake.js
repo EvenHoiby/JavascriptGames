@@ -144,6 +144,14 @@ function startGame(){
         }
 
         snakeEat(xSnakeFood, ySnakeFood);
+
+        if(playerAppendage.length == 256){
+            playerPosition();
+            gameEnd();
+            clearInterval(gameTick);
+            return;
+        }
+
         foodPositionValidCheck();
         playerPosition();
         playerChosen = false;
