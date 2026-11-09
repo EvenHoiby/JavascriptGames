@@ -25,6 +25,8 @@
     width: 410px;
     height: 410px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
@@ -40,4 +42,19 @@
 }
 .snakeBtn:hover {
     transform: scale(1.05);
+}
+#snakeGameDisplay {
+    background-color: #5b88b5;
+    border: 5px solid #003366;
+    border-radius: 20px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+.hidden {
+    display: none !important;
 }
