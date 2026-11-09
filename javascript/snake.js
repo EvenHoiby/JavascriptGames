@@ -272,8 +272,10 @@ function gameEnd(p1Crashed, p2Crashed){
             snakeHighscore.innerText = `Player 1 points: ${(playerAppendage.length - 1)}\nPlayer 2 points: ${(player2Appendage.length - 1)}`;
         }
     }
-    else if((playerAppendage.length - 1) > currentSnakeHighscore){
-        currentSnakeHighscore = (playerAppendage.length - 1);
+    else{
+        if((playerAppendage.length - 1) > currentSnakeHighscore){
+            currentSnakeHighscore = (playerAppendage.length - 1);
+        }
         snakeHighscore.innerText = "Highscore: " + currentSnakeHighscore;
     }
 }
