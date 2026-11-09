@@ -30,6 +30,13 @@
     position: relative;
 }
 
+#snakeButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 .snakeBtn {
     padding: 6px 18px;
     border: 3px solid #003366;
