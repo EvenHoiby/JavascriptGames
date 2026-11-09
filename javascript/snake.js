@@ -37,42 +37,7 @@ snakeFood.style.bottom = ySnakeFood + "px";
 snakeGame.append(snakeFood);
 
 // Button imputs
-const up = document.getElementById("up");
-const down = document.getElementById("down");
-const left = document.getElementById("left");
-const right = document.getElementById("right");
-const snakeRetryBtn = document.getElementById("snakeRetryBtn");
 const snakeStart = document.getElementById("snakeStart");
-
-let playerDirection = "up";
-
-up.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "down" && !playerChosen){
-        playerDirection = "up";
-        playerChosen = true;
-    };
-});
-
-down.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "up" && !playerChosen){
-        playerDirection = "down";
-        playerChosen = true;
-    };
-});
-
-left.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "right" && !playerChosen){
-        playerDirection = "left";
-        playerChosen = true;
-    };
-});
-
-right.addEventListener("click", ()=>{
-    if(!snakeGameOver && playerDirection != "left" && !playerChosen){
-        playerDirection = "right";
-        playerChosen = true;
-    };
-});
 
 snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
@@ -83,6 +48,8 @@ snakeStart.addEventListener("click", ()=>{
         startGame();
     }
 })
+
+let playerDirection = "up";
 
 document.addEventListener("keydown", (e)=>{
     if(e.key.startsWith("Arrow") && !snakeGameOver){
@@ -124,7 +91,7 @@ function startGame(){
 
         snakeEat(105, 105);
         playerChosen = false;
-    }, 1000);
+    }, 400);
 };
 
 function playerMove(){
