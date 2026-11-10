@@ -3,8 +3,6 @@ const snakeFood = document.createElement("div");
 const snakeHighscore = document.getElementById("snakeHighscore");
 const whoWon = document.getElementById("whoWon");
 let snakeGameOver = true;
-let playerChosen = false;
-let player2Chosen = false;
 let twoPlayer = false;
 
 let currentSnakeHighscore = 0;
@@ -100,6 +98,8 @@ const snakeGameDisplay = document.getElementById("snakeGameDisplay");
 
 snakeStart.addEventListener("click", ()=>{
     if(snakeGameOver){
+        playerInputs.length = 0;
+        player2Inputs.length = 0;
         whoWon.innerText = "";
         clearSnakes();
 
@@ -119,6 +119,8 @@ snakeStart.addEventListener("click", ()=>{
 
 snakeStart2.addEventListener("click", ()=>{
     if(snakeGameOver){
+        playerInputs.length = 0;
+        player2Inputs.length = 0;
         whoWon.innerText = "";
         clearSnakes();
 
@@ -148,43 +150,47 @@ let player2Direction = "up";
 
 
 // User keyboard inputs
+const playerInputs = [];
+const player2Inputs = [];
+
 document.addEventListener("keydown", (e)=>{
-    if(e.key.startsWith("Arrow") && !snakeGameOver){
+    if(snakeGameOver){
+        return;
+    } 
+    
+    if(e.key.startsWith("Arrow")){
         e.preventDefault();
     };
+
+    const p1Last = playerInputs.length > 0 ? playerInputs[playerInputs.length - 1] : playerDirection;
     
-    if(e.key == "ArrowUp" && !snakeGameOver && playerDirection != "down" && !playerChosen){
-        playerDirection = "up";
-        playerChosen = true;
+    if(e.key == "ArrowUp" && p1Last != "down" && playerInputs.length < 2){
+        playerInputs.push("up");
     }
-    else if(e.key == "ArrowDown" && !snakeGameOver && playerDirection != "up" && !playerChosen){
-        playerDirection = "down";
-        playerChosen = true;
+    else if(e.key == "ArrowDown" && p1Last != "up" && playerInputs.length < 2){
+        playerInputs.push("down");
     }
-    else if(e.key == "ArrowLeft" && !snakeGameOver && playerDirection != "right" && !playerChosen){
-        playerDirection = "left";
-        playerChosen = true;
+    else if(e.key == "ArrowLeft" && p1Last != "right" && playerInputs.length < 2){
+        playerInputs.push("left");
     }
-    else if(e.key == "ArrowRight" && !snakeGameOver && playerDirection != "left" && !playerChosen){
-        playerDirection = "right";
-        playerChosen = true;
+    else if(e.key == "ArrowRight" && p1Last != "left" && playerInputs.length < 2){
+        playerInputs.push("right");
     };
 
-    if(e.key == "w" && !snakeGameOver && player2Direction != "down" && !player2Chosen){
-        player2Direction = "up";
-        player2Chosen = true;
+
+    const p2Last = player2Inputs.length > 0 ? player2Inputs[player2Inputs.length - 1] : player2Direction;
+
+    if(e.key.toLowerCase() == "w" && p2Last != "down" && player2Inputs.length < 2){
+        player2Inputs.push("up");
     }
-    else if(e.key == "s" && !snakeGameOver && player2Direction != "up" && !player2Chosen){
-        player2Direction = "down";
-        player2Chosen = true;
+    else if(e.key.toLowerCase() == "s" && p2Last != "up" && player2Inputs.length < 2){
+        player2Inputs.push("down");
     }
-    else if(e.key == "a" && !snakeGameOver && player2Direction != "right" && !player2Chosen){
-        player2Direction = "left";
-        player2Chosen = true;
+    else if(e.key.toLowerCase() == "a" && p2Last != "right" && player2Inputs.length < 2){
+        player2Inputs.push("left");
     }
-    else if(e.key == "d" && !snakeGameOver && player2Direction != "left" && !player2Chosen){
-        player2Direction = "right";
-        player2Chosen = true;
+    else if(e.key.toLowerCase() == "d" && p2Last != "left" && player2Inputs.length < 2){
+        player2Inputs.push("right");
     };
 })
 
@@ -192,6 +198,14 @@ document.addEventListener("keydown", (e)=>{
 function startGame(){
     const gameTick = setInterval(()=>{
         moveBody(playerAppendage);
+
+        if(playerInputs.length > 0){
+            playerDirection = playerInputs.shift();
+        };
+        if(twoPlayer && player2Inputs.length > 0){
+            player2Direction = player2Inputs.shift();
+        };
+
         playerMove(playerAppendage, playerDirection);
 
         if(twoPlayer){
@@ -239,9 +253,6 @@ function startGame(){
         if(twoPlayer){
             playerPosition(player2Appendage, "#807815")
         }
-
-        playerChosen = false;
-        player2Chosen = false;
     }, 350);
 };
 
