@@ -259,7 +259,7 @@ function startGame(){
 // Checks if a snake has crashed
 function snakeCrashed(snake, otherSnake){
     const head = snake[0];
-    if(head.yPlayer >= 400 || head.yPlayer <= -10 || head.xPlayer >= 400 || head.xPlayer <= -10){
+    if(head.yPlayer > 365 || head.yPlayer < 5 || head.xPlayer > 365 || head.xPlayer < 5){
             return true;
         }
 
